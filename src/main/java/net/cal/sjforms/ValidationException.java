@@ -1,9 +1,9 @@
 package net.cal.sjforms;
 
 /**
- * Thrown when a value passed to a {@link net.cal.sjforms.ValidationException} fails validation.
- * Includes both the name of the field that failed validation ({@link #getFieldName()} and
- * the value that caused the error {@link #getValue()}.
+ * Thrown when a value passed to a {@link net.cal.sjforms.Validator} fails validation.
+ * Includes both the name of the field that failed validation ({@link #getFieldName()}
+ * and the value that caused the error {@link #getValue()}.
  */
 public class ValidationException extends Exception {
 
