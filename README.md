@@ -8,7 +8,7 @@ Usage is fairly straightforward. First declare the structure of your form (usual
     Field<Integer> LIMIT_FIELD = Field.intField("limit").required();
     Form FORM = new Form(INPUT_FIELD, LIMIT_FIELD);
  
-Next Load some input and validate it:
+Next load some input and validate it:
  
     // somehow acquire a Map<String, String> (from field names to input values) called inputMap
  
