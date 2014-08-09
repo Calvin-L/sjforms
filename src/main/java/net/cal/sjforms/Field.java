@@ -138,6 +138,42 @@ public abstract class Field<T> {
     return withValidator(new EnumValidator<>(values));
   }
 
+  public <U extends Comparable<T>> Field<T> atLeast(U min) {
+    return withValidator(new InclusiveMinValidator<>(min));
+  }
+
+  public <U extends Comparable<T>> Field<T> greaterThan(U min) {
+    return withValidator(new ExclusiveMinValidator<>(min));
+  }
+
+  @SuppressWarnings("unchecked")
+  public Field<T> clampMin(T min) {
+    if (!(min instanceof Comparable)) {
+      throw new IllegalArgumentException(min + " is not comparable");
+    }
+    // While it is true that min may actually implement comparable for some
+    // type other than T, this cast is safe under ordinary conditions.
+    return (Field<T>)withValidator(new ClampedMinValidator(min));
+  }
+
+  public <U extends Comparable<T>> Field<T> atMost(U max) {
+    return withValidator(new InclusiveMaxValidator<>(max));
+  }
+
+  public <U extends Comparable<T>> Field<T> lessThan(U max) {
+    return withValidator(new ExclusiveMaxValidator<>(max));
+  }
+
+  @SuppressWarnings("unchecked")
+  public Field<T> clampMax(T max) {
+    if (!(max instanceof Comparable)) {
+      throw new IllegalArgumentException(max + " is not comparable");
+    }
+    // While it is true that max may actually implement comparable for some
+    // type other than T, this cast is safe under ordinary conditions.
+    return (Field<T>)withValidator(new ClampedMaxValidator(max));
+  }
+
   public abstract String getName();
   public abstract T validate(String value) throws ValidationException;
 

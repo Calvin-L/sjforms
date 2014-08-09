@@ -7,10 +7,10 @@ package net.cal.sjforms;
  *
  * <p>Instances of this class can act as validators (if they emit the exact input object
  * but throw validation exceptions under some conditions -- see e.g.
- * {@link net.cal.sjforms.validators.RequiredValidator}) OR as transformers (if they emit a different
+ * {@link net.cal.sjforms.validators.RequiredValidator}) or as transformers (if they emit a different
  * object from the given input -- see e.g. {@link net.cal.sjforms.validators.DoubleValidator}).
- * Some complex validators do a little of each -- see e.g.
- * {@link net.cal.sjforms.validators.RangeValidator}.</p>
+ * Some complex validators do a little of each (although that is generally not the case with the
+ * builtin validators).</p>
  * @param <In> the input type
  * @param <Out> the output type
  */
