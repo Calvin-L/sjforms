@@ -16,7 +16,7 @@ public class ClampedMaxValidator<T extends Object & Comparable<T>> implements Va
     if (value == null) {
       return null;
     }
-    if (max.compareTo(value) > 0) {
+    if (max.compareTo(value) < 0) {
       return max;
     }
     return value;
