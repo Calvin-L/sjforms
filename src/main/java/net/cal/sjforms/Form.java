@@ -39,6 +39,8 @@ public class Form {
   /**
    * Array form of {@link #Form(Iterable)}.
    * @param fields the fields to use
+   * @throws java.lang.NullPointerException if any field is null or if any field has a null name
+   * @throws java.lang.IllegalArgumentException if any field names are duplicated
    */
   public Form(Field... fields) {
     this(Arrays.asList(fields));
@@ -47,8 +49,24 @@ public class Form {
   /**
    * Construct a form with the given fields.
    * @param fields the fields to use
+   * @throws java.lang.NullPointerException if any field is null or if any field has a null name
+   * @throws java.lang.IllegalArgumentException if any field names are duplicated
    */
   public Form(Iterable<Field> fields) {
+    Set<String> names = new HashSet<>();
+    for (Field field : fields) {
+      if (field == null) {
+        throw new NullPointerException("Cannot construct a Form with a null Field");
+      }
+      String name = field.getName();
+      if (name == null) {
+        throw new NullPointerException("Field " + field + " has a null name");
+      }
+      if (names.contains(name)) {
+        throw new IllegalArgumentException("Fields " + fields + " contains more than one field named '" + name + '\'');
+      }
+      names.add(field.getName());
+    }
     this.fields = Lists.newArrayList(fields);
   }
 
@@ -64,6 +82,8 @@ public class Form {
    * Array form of {@link #extend(Iterable)}.
    * @param fields the extra fields
    * @return a new form with all the fields from this one plus the ones given
+   * @throws java.lang.NullPointerException if any field is null or if any field has a null name
+   * @throws java.lang.IllegalArgumentException if any field names are duplicated
    */
   public Form extend(Field... fields) {
     return extend(Arrays.asList(fields));
@@ -73,6 +93,8 @@ public class Form {
    * Construct a new form with additional fields.
    * @param fields the extra fields
    * @return a new form with all the fields from this one plus the ones given
+   * @throws java.lang.NullPointerException if any field is null or if any field has a null name
+   * @throws java.lang.IllegalArgumentException if any field names are duplicated
    */
   public Form extend(Iterable<Field> fields) {
     return new Form(Iterables.concat(this.fields, fields));
