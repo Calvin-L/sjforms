@@ -1,6 +1,6 @@
 # SJForms (Simple Java Forms)
 
-This is a small declarative-style library for validating untrusted input in Java.
+This is a small declarative-style library for validating untrusted input in Java. It is useful for checking HTTP request parameters, command-line parameters, etc.
 
 Usage is fairly straightforward. First declare the structure of your form (usually as static class members):
 
