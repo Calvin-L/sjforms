@@ -18,8 +18,9 @@ public interface Validator<In, Out> {
 
   /**
    * Parse the given input value and produce a valid output object.
-   * @param fieldName
-   * @param value
+   * @param fieldName the name of the field being parsed (usually ignored; should be used only to construct
+   *                  {@link net.cal.sjforms.ValidationException} instances and provide debugging information)
+   * @param value the value to parse
    * @return the parsed object. NOTE: excluding rare cases (e.g. {@link net.cal.sjforms.validators.RequiredValidator}
    *         and {@link net.cal.sjforms.validators.DefaultValueValidator}), validators return null when the input
    *         value is null. In this way, you can attach arbitrary validators to optional fields.
